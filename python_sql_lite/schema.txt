@@ -1,0 +1,25 @@
+Tables:
+- Users
+  - userID (username)
+  - name
+  - email
+  - password
+- Videos
+  - videoID
+  - userID
+  - date
+- Subscribers
+  - userID
+  - subscriberID
+- Views
+  - videoID
+  - userID
+- Likes
+  - videoID
+  - userID
+- Comments
+  - videoID
+  - userID
+  - date
+  - content (string)
+
