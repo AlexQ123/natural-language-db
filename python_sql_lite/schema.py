@@ -10,6 +10,7 @@ sql_create_users_table = """
 sql_create_videos_table = """
   CREATE TABLE videos (
     video_id INT PRIMARY KEY AUTO_INCREMENT,
+    name TEXT,
     user_id TEXT,
     date DATETIME,
     FOREIGN KEY (user_id) references users(user_id)
