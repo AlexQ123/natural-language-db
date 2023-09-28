@@ -20,21 +20,20 @@ def insert_to_users(conn):
   return cur.lastrowid
 
 def insert_to_videos(conn):
-  # Note that the video IDs auto increment starting with 1
   sql = """
     INSERT INTO videos
-    (name, user_id, date)
+    (video_id, name, user_id, date)
     VALUES
-    ('Starting the fire', 'wuphf', '2005-10-11'),
-    ('How to be the best boss', 'worlds_best_boss', '2008-04-10'),
-    ('Getting into Cornell', 'nard_dog', '2004-02-21'),
-    ('Planting beets', 'beet_farmer', '2004-05-21'),
-    ('Raising beets', 'beet_farmer', '2004-05-22'),
-    ('Best places to hide weapons', 'beet_farmer', '2004-05-23'),
-    ('Harvesting beets', 'beet_farmer', '2004-05-24'),
-    ('Pranks Wars: Jim v Dwight', 'the_paper_guy', '2010-12-12'),
-    ('Making W.U.P.H.F.', 'wuphf', '2010-12-12'),
-    ('Threat Level Midnight', 'worlds_best_boss', '2011-02-17');
+    (1, 'Starting the fire', 'wuphf', '2005-10-11'),
+    (2, 'How to be the best boss', 'worlds_best_boss', '2008-04-10'),
+    (3, 'Getting into Cornell', 'nard_dog', '2004-02-21'),
+    (4, 'Planting beets', 'beet_farmer', '2004-05-21'),
+    (5, 'Raising beets', 'beet_farmer', '2004-05-22'),
+    (6, 'Best places to hide weapons', 'beet_farmer', '2004-05-23'),
+    (7, 'Harvesting beets', 'beet_farmer', '2004-05-24'),
+    (8, 'Pranks Wars: Jim v Dwight', 'the_paper_guy', '2010-12-12'),
+    (9, 'Making W.U.P.H.F.', 'wuphf', '2010-12-12'),
+    (10, 'Threat Level Midnight', 'worlds_best_boss', '2011-02-17');
   """
 
   cur = conn.cursor()
