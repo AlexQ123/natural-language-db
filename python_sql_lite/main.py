@@ -1,6 +1,5 @@
 import argparse
 import openai
-import json
 import os
 
 from query import select_from_table
