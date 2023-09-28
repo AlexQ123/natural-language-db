@@ -93,6 +93,51 @@ def insert_to_views(conn):
 	conn.commit()
 	return cur.lastrowid
 
+def insert_to_likes(conn):
+	sql = """
+ 	    INSERT INTO likes
+	    (like_id, video_id, user_id)
+	    VALUES
+	    (1, 1, 'worlds_best_boss'),
+	    (2, 1, 'nard_dog'),
+	    (3, 2, 'worlds_best_boss'),
+	    (4, 2, 'beet_farmer'),
+	    (5, 6, 'the_paper_guy'),
+	    (6, 8, 'worlds_best_boss'),
+	    (7, 8, 'the_paper_guy'),
+	    (8, 8, 'nard_dog'),
+	    (9, 9, 'worlds_best_boss'),
+	    (10, 10, 'worlds_best_boss'),
+	    (11, 10, 'beet_farmer'),
+	    (12, 10, 'nard_dog'),
+	    (13, 10, 'the_paper_guy'), 	
+ 	"""
+
+	cur = conn.cursor()
+	cur.execute(sql)
+	conn.commit()
+	return cur.lastrowid
+
+# def insert_to_comments(conn):
+# 	sql = """
+# 	    INSERT INTO comments
+# 	    (comment_id, video_id, user_id, date, content)
+# 	    VALUES
+# 	    (1, 1, 'worlds_best_boss'),
+# 	    (4, 1, 'the_paper_guy'),
+# 	    (6, 2, 'beet_farmer'),
+# 	    (8, 6, 'the_paper_guy'),
+# 	    (9, 8, 'worlds_best_boss'),
+# 	    (11, 8, 'beet_farmer'),
+# 	    (13, 9, 'worlds_best_boss'),
+# 	    (15, 10, 'beet_farmer'),
+# 	    (17, 10, 'the_paper_guy'),
+# 	  """
+
+# 	cur = conn.cursor()
+# 	cur.execute(sql)
+# 	conn.commit()
+# 	return cur.lastrowid
 
 def select_all_from_users(conn):
   cur = conn.cursor()
@@ -120,9 +165,9 @@ def main():
   create_table(conn, sql_create_views_table)
   insert_to_views(conn)
   create_table(conn, sql_create_likes_table)
-  # insert_to_likes(conn)
+  insert_to_likes(conn)
   create_table(conn, sql_create_comments_table)
-  # insert_to_comments(conn)
+  #insert_to_comments(conn)
 
   print("Database build successful!")
   select_all_from_table(conn, 'users')
