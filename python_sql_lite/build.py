@@ -118,26 +118,26 @@ def insert_to_likes(conn):
 	conn.commit()
 	return cur.lastrowid
 
-# def insert_to_comments(conn):
-# 	sql = """
-# 	    INSERT INTO comments
-# 	    (comment_id, video_id, user_id, date, content)
-# 	    VALUES
-# 	    (1, 1, 'worlds_best_boss'),
-# 	    (4, 1, 'the_paper_guy'),
-# 	    (6, 2, 'beet_farmer'),
-# 	    (8, 6, 'the_paper_guy'),
-# 	    (9, 8, 'worlds_best_boss'),
-# 	    (11, 8, 'beet_farmer'),
-# 	    (13, 9, 'worlds_best_boss'),
-# 	    (15, 10, 'beet_farmer'),
-# 	    (17, 10, 'the_paper_guy'),
-# 	  """
+def insert_to_comments(conn):
+	sql = """
+	    INSERT INTO comments
+	    (comment_id, video_id, user_id, date, content)
+	    VALUES
+	    (1, 1, 'worlds_best_boss', '2005-10-11', 'Love this vid!'),
+	    (2, 1, 'the_paper_guy', "2005-11-12', 'ehh, I've seen better'),
+	    (3, 2, 'beet_farmer', '2005-10-11', 'noted'),
+	    (4, 6, 'the_paper_guy', '2005-06-21', 'concerning'),
+	    (5, 8, 'worlds_best_boss', '2010-12-12', 'I remember this!'),
+	    (6, 8, 'beet_farmer', '2010-12-12', 'I don't appreciate this Jim...'),
+	    (7, 9, 'worlds_best_boss', '2010-12-12', 'Love this vid!'),
+	    (8, 10, 'beet_farmer', '2011-02-17', 'E P I C'),
+	    (9, 10, 'the_paper_guy', '2011-02-24', 'lol'),
+	  """
 
-# 	cur = conn.cursor()
-# 	cur.execute(sql)
-# 	conn.commit()
-# 	return cur.lastrowid
+	cur = conn.cursor()
+	cur.execute(sql)
+	conn.commit()
+	return cur.lastrowid
 
 def select_all_from_users(conn):
   cur = conn.cursor()
@@ -167,7 +167,7 @@ def main():
   create_table(conn, sql_create_likes_table)
   insert_to_likes(conn)
   create_table(conn, sql_create_comments_table)
-  #insert_to_comments(conn)
+  insert_to_comments(conn)
 
   print("Database build successful!")
   select_all_from_table(conn, 'users')
