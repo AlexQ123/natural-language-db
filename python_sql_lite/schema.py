@@ -53,12 +53,17 @@ sql_create_comments_table = """
     video_id INT,
     user_id TEXT,
     date DATETIME,
-    conent TEXT,
+    content TEXT,
     FOREIGN KEY (video_id) references videos(video_id),
     FOREIGN KEY (user_id) references users(user_id)
   );
 """
 
 def get_schema():
-  schema = f"{sql_create_category_table}{sql_create_menu_table}{sql_create_customers_table}{sql_create_employee_table}{sql_create_orders_table}"
+  schema = f"{sql_create_users_table}" \
+           f"{sql_create_videos_table}" \
+           f"{sql_create_subscriptions_table}" \
+           f"{sql_create_views_table}" \
+           f"{sql_create_likes_table}" \
+           f"{sql_create_comments_table}"
   return schema
