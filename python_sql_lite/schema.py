@@ -20,9 +20,9 @@ sql_create_videos_table = """
 sql_create_subscriptions_table = """
   CREATE TABLE subscriptions (
     subscription_id INT AUTO_INCREMENT PRIMARY KEY,
-    video_id INT,
+    creator_id TEXT,
     subscriber_id TEXT,
-    FOREIGN KEY (video_id) references videos(video_id),
+    FOREIGN KEY (creator_id) references users(user_id),
     FOREIGN KEY (subscriber_id) references users(user_id)
   );
 """
