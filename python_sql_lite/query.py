@@ -2,19 +2,19 @@ import argparse
 from db import create_connection
 
 
-def select_all_from_menu(conn):
-    """
-    Query all rows in the tasks table
-    :param conn: the Connection object
-    :return:
-    """
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM menu")
+def select_all_from_table(conn, table):
+  """
+  Query all rows in the tasks table
+  :param conn: the Connection object
+  :return:
+  """
+  cur = conn.cursor()
+  cur.execute("SELECT * FROM {}".format(table))
 
-    rows = cur.fetchall()
+  rows = cur.fetchall()
 
-    for row in rows:
-        print(row)
+  for row in rows:
+    print(row)
 
 def select_from_table(conn, query):
     """

@@ -1,138 +1,83 @@
 import os
 
 from db import create_table, create_connection
+from query import select_all_from_table
 from schema import *
 
+def insert_to_users(conn):
+  sql = """
+    INSERT INTO users VALUES
+    ('beet_farmer', 'Dwight Schrute', 'dwight@schrutebucks.com', 'battlestargalactica'),
+    ('worlds_best_boss', 'Michael Scott', 'michaelscott@dundermifflin.com', 'thatswhatshesaid'),
+    ('the_paper_guy', 'Jim Halpert', 'jimh@dundermifflin.com', 'pleasehelp'),
+    ('nard_dog', 'Andy Bernard', 'andyb@cornell.edu', 'cornell'),
+    ('wuphf', 'Ryan Howard', 'ryan@wuphf.com', 'istartedthefire');
+  """
 
-def select_all_from_menu(conn):
-    """
-    Query all rows in the tasks table
-    :param conn: the Connection object
-    :return:
-    """
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM menu")
+  cur = conn.cursor()
+  cur.execute(sql)
+  conn.commit()
+  return cur.lastrowid
 
-    rows = cur.fetchall()
+def insert_to_videos(conn):
+  # Note that the video IDs auto increment starting with 1
+  sql = """
+    INSERT INTO videos
+    (name, user_id, date)
+    VALUES
+    ('Starting the fire', 'wuphf', '2005-10-11'),
+    ('How to be the best boss', 'worlds_best_boss', '2008-04-10'),
+    ('Getting into Cornell', 'nard_dog', '2004-02-21'),
+    ('Planting beets', 'beet_farmer', '2004-05-21'),
+    ('Raising beets', 'beet_farmer', '2004-05-22'),
+    ('Best places to hide weapons', 'beet_farmer', '2004-05-23'),
+    ('Harvesting beets', 'beet_farmer', '2004-05-24'),
+    ('Pranks Wars: Jim v Dwight', 'the_paper_guy', '2010-12-12'),
+    ('Making W.U.P.H.F.', 'wuphf', '2010-12-12'),
+    ('Threat Level Midnight', 'worlds_best_boss', '2011-02-17');
+  """
 
-    for row in rows:
-        print(row)
+  cur = conn.cursor()
+  cur.execute(sql)
+  conn.commit()
+  return cur.lastrowid
 
-def insert_to_menu(conn):
-    """
-    Create a new project into the projects table
-    :param conn:
-    :param project:
-    :return: project id
-    """
-    sql = """
-        INSERT INTO menu VALUES
-        (1, 'Green Tea', '1', 50),
-        (2, 'Thai Tea', '1', 50),
-        (3, 'Jasmine Tea', '1', 50),
-        (4, 'Espresso', '2',55),
-        (5, 'Cappucino', '2',55),
-        (6, 'Latte', '2',55),
-        (7, 'Mocha', '2',55),
-        (8, 'Passion Fruit', '3',60),
-        (9, 'Mango Juice', '3',60),
-        (10,'Orange Juice', '3',60);
-    """
 
-    cur = conn.cursor()
-    cur.execute(sql)
-    conn.commit()
-    return cur.lastrowid
+def select_all_from_users(conn):
+  cur = conn.cursor()
+  cur.execute("SELECT * FROM users")
 
-def insert_to_categories(conn):
+  rows = cur.fetchall()
 
-    sql = """
-        INSERT INTO categories VALUES
-	    (1, 'tea'),
-        (2, 'coffee'),
-        (3, 'juice');
-    """
-    cur = conn.cursor()
-    cur.execute(sql)
-    conn.commit()
-    return cur.lastrowid
-
-def insert_to_customers(conn):
-
-    sql = """
-        INSERT INTO customers VALUES
-	    (1, 'Mark', 'Lee','Bangkok'),
-        (2, 'Johnny', 'Suh', 'Phuket'),
-        (3, 'Jennie', 'Kim', 'Chiangmai'),
-        (4, 'Jeno', 'Lee', 'Bangkok'),
-        (5, 'Karina', 'Yoo', 'Chiangmai');
-    """
-    cur = conn.cursor()
-    cur.execute(sql)
-    conn.commit()
-    return cur.lastrowid
-
-def insert_to_employees(conn):
-    sql = """
-         INSERT INTO employee VALUES
-	        (1, 'Nicolene', 'Jones','2020-09-01','Bangkok'),
-            (2, 'Anna', 'Smith', '2021-12-01', 'Phuket'),
-            (3, 'Jessica', 'Brown', '2020-08-01', 'Chiangmai');
-    """
-    cur = conn.cursor()
-    cur.execute(sql)
-    conn.commit()
-    return cur.lastrowid
-
-def insert_to_orders(conn):
-
-    sql = """
-        INSERT INTO Orders VALUES
-	    (1, '2022-08-01',1,1,4,'Grabfood',1),
-        (2, '2022-08-01',6,2,1,'Lineman',1),
-	    (3, '2022-08-02',2,2,2,'Robinhood',2),
-	    (4, '2022-08-03',3,1,5,'Grabfood',3),
-	    (5, '2022-08-04',1,1,2,'Robinhood',2),
-	    (6, '2022-08-05',6,1,4,'Grabfood',1),
-	    (7, '2022-08-05',10,1,3,'Grabfood',3),
-	    (8, '2022-08-09',3,2,4,'Grabfood',1),
-	    (9, '2022-08-13',5,3,1,'Lineman',1),
-	    (10, '2022-08-13',6,1,2,'Robinhood',2),
-	    (11, '2022-08-13',7,1,5,'Lineman',3),
-	    (12, '2022-08-14',4,1,5,'Grabfood',3),
-	    (13, '2022-08-15',5,2,3,'Grabfood',3),
-	    (14, '2022-08-15',10,1,2,'Robinhood',2),
-	    (15, '2022-08-18',5,2,1,'Lineman',1),
-	    (16, '2022-08-20',6,1,2,'Robinhood',2),
-	    (17, '2022-08-21',4,2,1,'Lineman',1),
-	    (18, '2022-08-25',5,1,5,'Grabfood',3),
-	    (19, '2022-08-26',5,3,3,'Grabfood',3),
-	    (20, '2022-08-29',6,2,4,'Grabfood',1);
-    """
-    cur = conn.cursor()
-    cur.execute(sql)
-    conn.commit()
-    return cur.lastrowid
+  for row in rows:
+    print(row)
 
 def main():
-    database = "./pythonsqlite.db"
+  database = "./pythonsqlite.db"
+  # Delete the database if its already exists
+  if os.path.exists(database):
+    os.remove(database)
 
-    # create a database connection
-    conn = create_connection(database)
-    create_table(conn, sql_create_category_table)
-    insert_to_categories(conn)
-    create_table(conn, sql_create_menu_table)
-    insert_to_menu(conn)
-    create_table(conn, sql_create_customers_table)
-    insert_to_customers(conn)
-    create_table(conn, sql_create_employee_table)
-    insert_to_employees(conn)
-    create_table(conn, sql_create_orders_table)
-    insert_to_orders(conn)
+  # create a database connection
+  conn = create_connection(database)
+  create_table(conn, sql_create_users_table)
+  insert_to_users(conn)
+  create_table(conn, sql_create_videos_table)
+  insert_to_videos(conn)
+  create_table(conn, sql_create_subscriptions_table)
+  # insert_to_subscriptions(conn)
+  create_table(conn, sql_create_views_table)
+  # insert_to_views(conn)
+  create_table(conn, sql_create_likes_table)
+  # insert_to_likes(conn)
+  create_table(conn, sql_create_comments_table)
+  # insert_to_comments(conn)
 
-    print("Database build successful!")
+  print("Database build successful!")
+  select_all_from_table(conn, 'users')
+  select_all_from_table(conn, 'videos')
 
 if __name__ == "__main__":
-    main()
+  main()
 
 
