@@ -44,5 +44,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     conn = create_connection(DATABASE)
 
-    # main(conn, question=args.query)
+    main(conn, question=args.query)
 
