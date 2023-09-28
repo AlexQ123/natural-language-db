@@ -118,6 +118,27 @@ def insert_to_likes(conn):
 	conn.commit()
 	return cur.lastrowid
 
+# def insert_to_comments(conn):
+# 	sql = """
+# 	    INSERT INTO comments
+# 	    (comment_id, video_id, user_id, date, content)
+# 	    VALUES
+# 	    (1, 1, 'worlds_best_boss'),
+# 	    (4, 1, 'the_paper_guy'),
+# 	    (6, 2, 'beet_farmer'),
+# 	    (8, 6, 'the_paper_guy'),
+# 	    (9, 8, 'worlds_best_boss'),
+# 	    (11, 8, 'beet_farmer'),
+# 	    (13, 9, 'worlds_best_boss'),
+# 	    (15, 10, 'beet_farmer'),
+# 	    (17, 10, 'the_paper_guy'),
+# 	  """
+
+# 	cur = conn.cursor()
+# 	cur.execute(sql)
+# 	conn.commit()
+# 	return cur.lastrowid
+
 def select_all_from_users(conn):
   cur = conn.cursor()
   cur.execute("SELECT * FROM users")
@@ -146,7 +167,7 @@ def main():
   create_table(conn, sql_create_likes_table)
   insert_to_likes(conn)
   create_table(conn, sql_create_comments_table)
-  # insert_to_comments(conn)
+  #insert_to_comments(conn)
 
   print("Database build successful!")
   select_all_from_table(conn, 'users')
