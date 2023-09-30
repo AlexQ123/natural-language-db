@@ -110,7 +110,7 @@ def insert_to_likes(conn):
 	    (10, 10, 'worlds_best_boss'),
 	    (11, 10, 'beet_farmer'),
 	    (12, 10, 'nard_dog'),
-	    (13, 10, 'the_paper_guy'), 	
+	    (13, 10, 'the_paper_guy'); 	
  	"""
 
 	cur = conn.cursor()
@@ -124,11 +124,11 @@ def insert_to_comments(conn):
 	    (comment_id, video_id, user_id, date, content)
 	    VALUES
 	    (1, 1, 'worlds_best_boss', '2005-10-11', 'Love this vid!'),
-	    (2, 1, 'the_paper_guy', "2005-11-12', 'ehh, I've seen better'),
+	    (2, 1, 'the_paper_guy', "2005-11-12', 'ehh, I have seen better'),
 	    (3, 2, 'beet_farmer', '2005-10-11', 'noted'),
 	    (4, 6, 'the_paper_guy', '2005-06-21', 'concerning'),
 	    (5, 8, 'worlds_best_boss', '2010-12-12', 'I remember this!'),
-	    (6, 8, 'beet_farmer', '2010-12-12', 'I don't appreciate this Jim...'),
+	    (6, 8, 'beet_farmer', '2010-12-12', 'I do not appreciate this Jim...'),
 	    (7, 9, 'worlds_best_boss', '2010-12-12', 'Love this vid!'),
 	    (8, 10, 'beet_farmer', '2011-02-17', 'E P I C'),
 	    (9, 10, 'the_paper_guy', '2011-02-24', 'lol'),
