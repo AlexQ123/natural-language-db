@@ -29,8 +29,7 @@ def select_from_table(conn, query):
 
     for row in rows:
         row = str(row)
-        row = row[:-3]
-        row = row[2:]
+        row = row.replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace(',', '').replace('\'', '')
         print(row)
 
 if __name__ == "__main__":
