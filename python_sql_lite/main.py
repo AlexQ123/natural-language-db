@@ -32,7 +32,11 @@ def main(conn, question):
 
     print(f"AI-generated SQL query: \n{q}")
     print("Answer: \n")
-    select_from_table(conn, q)
+
+    try:
+        select_from_table(conn, q)
+    except Exception as e:
+        print("The AI-generated SQL produced an error: ", e)
 
 
 if __name__ == "__main__":

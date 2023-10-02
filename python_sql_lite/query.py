@@ -28,6 +28,9 @@ def select_from_table(conn, query):
     rows = cur.fetchall()
 
     for row in rows:
+        row = str(row)
+        row = row[:-3]
+        row = row[2:]
         print(row)
 
 if __name__ == "__main__":
