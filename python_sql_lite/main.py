@@ -15,8 +15,8 @@ def main(conn, question):
 
     prompt = f"""
     
-    Given the following SQL Schema:{get_schema()}
-    Write a SQL query to answer this question: {question}
+    Given the following SQL Schema that models a video-sharing platform similar to YouTube:{get_schema()}
+    Write a SQLite query to answer this question: {question}
     
     """
 
